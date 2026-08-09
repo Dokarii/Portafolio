@@ -1091,6 +1091,9 @@ button {
     margin: 0 auto;
     transform: none;
   }
+  .hero-profile-img-wrap {
+    width: 100%;
+  }
   .hero-profile-img {
     width: 100%;
     aspect-ratio: 0.88;
