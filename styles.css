@@ -668,6 +668,42 @@ button {
   border-color: var(--card-border);
   transform: translate(3px, -3px);
 }
+.project-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+.project-icon-btn {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  color: var(--copy);
+  border: 1px solid transparent;
+  border-radius: 50%;
+  text-decoration: none;
+  transition:
+    color 0.22s var(--ease),
+    border-color 0.22s var(--ease),
+    transform 0.22s var(--ease);
+}
+.project-icon-btn svg {
+  width: 15px;
+  height: 15px;
+}
+.project-row:hover .project-icon-btn {
+  color: var(--text-primary);
+  border-color: var(--card-border);
+}
+.project-icon-btn:hover {
+  transform: scale(1.12);
+}
+.project-icon-btn:focus-visible {
+  outline: 2px solid var(--blue-bright);
+  outline-offset: 5px;
+  border-radius: 50%;
+}
 .project-preview {
   position: absolute;
   z-index: 4;
