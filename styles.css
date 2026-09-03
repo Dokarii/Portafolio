@@ -638,7 +638,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 12px;
+  gap: 20px;
   color: var(--copy);
   font-size: 0.72rem;
   font-weight: 700;
