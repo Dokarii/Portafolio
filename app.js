@@ -361,7 +361,7 @@ function renderProjects(projects) {
     return;
   }
 
-  container.innerHTML = projects.map(p => {
+  container.innerHTML = projects.map((p, index) => {
     // handle techs
     let techArray = p.technologies;
     if (typeof techArray === 'string') {
@@ -371,9 +371,12 @@ function renderProjects(projects) {
 
     // localize
     const projectType = currentLang === 'en' ? (p.type_en || p.type) : (p.type_es || p.type);
+    
+    // Reveal delay (cycle 0, 1, 2)
+    const delayClass = index % 3 === 0 ? '' : (index % 3 === 1 ? ' reveal-delay-1' : ' reveal-delay-2');
 
     return `
-      <div class="project-row" data-preview-img="${p.image_url || ''}">
+      <div class="project-row reveal${delayClass}" data-preview-img="${p.image_url || ''}">
         <!-- Left: number + title -->
         <div class="project-primary">
           <span class="project-number">${p.num}</span>
@@ -449,4 +452,15 @@ function initProjectHover() {
 // load on ready
 document.addEventListener('DOMContentLoaded', () => {
   fetchProjects();
+
+  /* ── Scroll reveal ── */
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 });
