@@ -328,6 +328,7 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_
 
 // cached projects
 let cachedProjects = [];
+let revealObserver;
 
 // fetch projects
 async function fetchProjects() {
@@ -410,6 +411,7 @@ function renderProjects(projects) {
     `;
   }).join('');
 
+  container.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   initDynamicHoverPreview();
 }
 
@@ -451,16 +453,16 @@ function initProjectHover() {
 
 // load on ready
 document.addEventListener('DOMContentLoaded', () => {
-  fetchProjects();
-
   /* ── Scroll reveal ── */
-  const obs = new IntersectionObserver((entries) => {
+  revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
-        obs.unobserve(e.target);
+        revealObserver.unobserve(e.target);
       }
     });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  fetchProjects();
 });
