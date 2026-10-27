@@ -672,6 +672,29 @@ button {
   border-color: var(--card-border);
   transform: translate(3px, -3px);
 }
+
+.project-arrow.is-disabled,
+.project-arrow.disabled {
+  cursor: not-allowed !important;
+  opacity: 0.35;
+  pointer-events: auto;
+}
+.project-row:hover .project-arrow.is-disabled,
+.project-row:hover .project-arrow.disabled,
+.project-arrow.is-disabled:hover,
+.project-arrow.disabled:hover {
+  cursor: not-allowed !important;
+  color: var(--copy);
+  border-color: transparent;
+  transform: none;
+}
+.project-arrow.is-disabled:focus-visible,
+.project-arrow.disabled:focus-visible {
+  outline: none;
+}
+.project-name.is-static {
+  cursor: default;
+}
 .project-links {
   display: flex;
   align-items: center;

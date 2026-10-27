@@ -1,0 +1,11 @@
+{
+  "name": "portafolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portafolio profesional de Ricardo Tejedor Anaya",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  }
+}
+
